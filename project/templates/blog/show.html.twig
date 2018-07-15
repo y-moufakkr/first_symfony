@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% form_theme formcomment 'bootstrap_4_layout.html.twig' %}
+{% block title %}{{article.title}} {% endblock %}
+
+{% block body %}
+    
+        <article class="jumbotron">
+            <h2>{{article.title}}  </h2>
+        <div class="metadata"> Ecrit le  {{article.createdAt | date("m/d/Y")}}à {{article.createdAt | date('H:i')}} </div>
+        <div class="metadata"> Categorie:  {{article.category.title}} </div> 
+         <div class="content"> 
+             <img src="{{article.image}}"  alt="" >
+        {{article.content | raw}}
+
+         </div>
+        </article>
+        <h2>Les commentaires..  </h2>
+        <div class="jumbotron">
+          
+     <section class="commentaires">
+            {%for comment in article.comments%}
+            <div class="comment">
+                <br />
+                <div class="row" >
+                    <div class="col-3">
+                        <strong>{{comment.author}}</strong><br/>
+                        <small> ({{comment.createdAt | date("m/d/Y")}} à {{comment.createdAt | date('H:i')}})</small>
+                    </div>
+                    <div class="col" > {{comment.content| raw}}</div>
+            
+            </div>
+                
+            </div>
+                     {% endfor%}
+     </section></div>
+          <h2>Commenter l'article  </h2>
+        <section class="commenter">
+      {{ form_start(formcomment, {attr: {novalidate: 'novalidate'}}) }}
+
+  {{form_row(formcomment.author,{'attr':{'placeholder':"auteur du commentaire.."} })}}
+  {{form_row(formcomment.content,{'attr':{'placeholder':"Contenu du commentaire.."} })}}
+ 
+  <button type="submit" class="btn btn-success" >
+        Commenter</button>
+   {{form_end(formcomment)}}
+        </section>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% form_theme formregister 'bootstrap_4_layout.html.twig' %}
+{% block title %} {% endblock %}
+
+{% block body %}
+    <br/>    <br/>
+    
+    <h1>Inscription</h1>
+    
+   {{ form_start(formregister, {attr: {novalidate: 'novalidate'} } ) }}
+   
+
+  {{form_row(formregister.username,{'label':"Username :",'attr':{'placeholder':"Username.."} })}}
+    {{form_row(formregister.email,{'label':"l'email :",'attr':{'placeholder':"email.."} })}}
+  {{form_row(formregister.password,{'label':"Le MDP :",'attr':{'placeholder':"password.."} })}}
+  {{form_row(formregister.password_confirm,{'label':"vérifier MDP :",'attr':{'placeholder':"Verify password.."} })}}
+
+  
+  <button type="submit" class="btn btn-success" >
+         S'inscrire</button>
+   {{form_end(formregister)}}
+     
+   
+{% endblock %}
+{# empty Twig template #}
+{# empty Twig template #}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% form_theme formarticle 'bootstrap_4_layout.html.twig' %}
+{% block title %} {% endblock %}
+
+{% block body %}
+    <br/>    <br/>
+    
+    <h1>{% if editbool %}
+      Ajouter d'articles
+         {% else %} Modification d'articles{% endif %}</h1>
+    
+   {{ form_start(formarticle, {attr: {novalidate: 'novalidate'}}) }}
+
+  {{form_row(formarticle.title,{'attr':{'placeholder':"Titre de l'article.."} })}}
+  {{form_row(formarticle.category,{'attr':{'placeholder':"Categorie de l'article.."} })}}
+  {{form_row(formarticle.content,{'attr':{'placeholder':"Contenu de l'article.."} })}}
+  {{form_row(formarticle.image,{'attr':{'placeholder':"image de l'article.."} })}}
+  <button type="submit" class="btn btn-success" >
+         {% if editbool %}
+      Ajouter l'article
+         {% else %} Modifier l'article</button>{% endif %}
+   {{form_end(formarticle)}}
+     
+   
+{% endblock %}
+{# empty Twig template #}
